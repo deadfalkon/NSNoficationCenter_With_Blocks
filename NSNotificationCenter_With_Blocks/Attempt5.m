@@ -19,7 +19,7 @@
         cleanupObj = [[NSNotificationCenter defaultCenter] addObserverForName:notificationName object:nil queue:nil usingBlock:^(NSNotification *note) {
             int oldCounterValue = counter;
             counter++;
-            counterObj = @(counterObj.intValue + 1);
+            self->counterObj = @(self->counterObj.intValue + 1);
             NSAssert(counter==oldCounterValue+1, @"Atomicity guarantee violated.");
 
         }];
