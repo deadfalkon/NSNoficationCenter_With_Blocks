@@ -15,12 +15,12 @@
 @implementation Attempt7
 -(id)init {
     if (self = [super init]) {
-        __weak Attempt7 *mySelf = self;
+        __weak typeof(self) weakSelf = self;
         cleanupObj = [[NSNotificationCenter defaultCenter] addObserverForName:notificationName object:nil queue:nil usingBlock:^(NSNotification *note) {
             int oldCounterValue = counter;
             counter++;
             NSCAssert(counter==oldCounterValue+1, @"Atomicity guarantee violated.");
-            mySelf.localCounter++;
+            weakSelf.localCounter++;
         }];
     }
     return self;
